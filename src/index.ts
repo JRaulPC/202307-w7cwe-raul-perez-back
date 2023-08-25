@@ -1,8 +1,10 @@
 import debugCreator from "debug";
-import connectToDatabase from "./database/connectToDatabase.js";
-import startServer from "./server/startServer.js";
+import "dotenv/config";
+import connectToDatabase from "./database/connectToDatabase";
+import startServer from "./server/routers/startServer";
 
 const port = process.env.PORT ?? 4000;
+
 const mongoRobotsUrl = process.env.MONGODB_URL;
 
 const debug = debugCreator("things:server:");
