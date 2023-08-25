@@ -1,4 +1,5 @@
 import debugCreator from "debug";
+import "dotenv/config";
 import app from "./index.js";
 
 const debug = debugCreator("robots:server:start");
