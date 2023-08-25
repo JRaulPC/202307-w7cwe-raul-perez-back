@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { type RobotStructure } from "../types";
+import { type RobotStructure } from "../../types";
 
 export const robotsMocks: RobotStructure[] = [
   {

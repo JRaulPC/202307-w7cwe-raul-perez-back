@@ -1,7 +1,7 @@
 import debugCreator from "debug";
 import "dotenv/config";
-import connectToDatabase from "./database/connectToDatabase.js";
-import startServer from "./server/startServer.js";
+import connectToDatabase from "./database/connectToDatabase";
+import startServer from "./server/routers/startServer";
 
 const port = process.env.PORT ?? 4000;
 

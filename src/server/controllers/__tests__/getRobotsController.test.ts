@@ -1,6 +1,6 @@
 import { type NextFunction, type Request, type Response } from "express";
-import CustomError from "../../CustomError/CustomError";
-import Robot from "../../database/models/Robot";
+import CustomError from "../../../CustomError/CustomError";
+import Robot from "../../../database/models/Robot";
 import { robotsMocks } from "../../mocks/mocks";
 import { getRobotsController } from "../robotsControllers.js";
 
