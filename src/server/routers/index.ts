@@ -7,7 +7,14 @@ import { robotsRoutes } from "./robotsRouters/robotsRouters.js";
 
 export const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: "/https://render.com/",
+  methods: "GET,POST,",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use(express.json());
 
