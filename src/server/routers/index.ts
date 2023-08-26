@@ -8,8 +8,8 @@ import { robotsRoutes } from "./robotsRouters/robotsRouters.js";
 export const app = express();
 
 const corsOptions = {
-  origin: "/https://render.com/",
-  methods: "GET,POST,",
+  origin: true,
+  methods: "GET,POST",
   preflightContinue: false,
   optionsSuccessStatus: 204,
 };

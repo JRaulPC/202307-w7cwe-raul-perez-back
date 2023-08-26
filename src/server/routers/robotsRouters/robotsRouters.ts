@@ -5,7 +5,7 @@ import { getRobotsController } from "../../controllers/robotsControllers.js";
 export const robotsRoutes = express.Router();
 
 const corsGetOptions = {
-  origin: "/https://render.com/",
+  origin: true,
   methods: "GET",
   preflightContinue: false,
   optionsSuccessStatus: 204,
