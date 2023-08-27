@@ -3,4 +3,5 @@ export interface RobotStructure {
   name: string;
   speed: number;
   endurance: number;
+  image: string;
 }
