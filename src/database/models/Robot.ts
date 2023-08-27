@@ -14,6 +14,10 @@ const robotSchema = new Schema<RobotStructure>({
     type: Number,
     required: true,
   },
+  image: {
+    type: String,
+    required: true,
+  },
 });
 
 const Robot = model("Robot", robotSchema, "robots");
