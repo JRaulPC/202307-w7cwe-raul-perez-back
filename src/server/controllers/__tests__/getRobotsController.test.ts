@@ -39,7 +39,7 @@ describe("Given a getRobotsController controller ", () => {
   });
 
   describe("And there is an error", () => {
-    test("Then it should call the received next function with a 500 status code and an internal server error, error", async () => {
+    test("Then it should call the received next function with a 500 status code and an 'Internal server error', error", async () => {
       const error = new CustomError(
         "Internal server error",
         500,

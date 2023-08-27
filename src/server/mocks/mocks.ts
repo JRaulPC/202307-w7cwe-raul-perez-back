@@ -21,3 +21,9 @@ export const robotsMocks: RobotStructure[] = [
     endurance: 8,
   },
 ];
+
+export const robotMock: Partial<RobotStructure> = {
+  name: "Roomba",
+  speed: 10,
+  endurance: 10,
+};
