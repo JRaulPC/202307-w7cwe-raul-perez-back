@@ -1,6 +1,8 @@
+import admin from "firebase-admin";
+import { type DecodedIdToken } from "firebase-admin/lib/auth/token-verifier.js";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import request from "supertest";
+import { default as request } from "supertest";
 import connectToDatabase from "../../../database/connectToDatabase.js";
 import Robot from "../../../database/models/Robot.js";
 import { type RobotStructure } from "../../../types.js";
@@ -9,11 +11,18 @@ import app from "../index.js";
 
 let server: MongoMemoryServer;
 
+jest.mock("firebase-admin");
+
 beforeEach(async () => {
   server = await MongoMemoryServer.create();
   const dbUrl = server.getUri();
   await connectToDatabase(dbUrl);
   await Robot.create(robotsMocks);
+  const token: Partial<DecodedIdToken> = {};
+
+  admin.auth = jest.fn().mockReturnValue({
+    verifyIdToken: jest.fn().mockResolvedValue(token as DecodedIdToken),
+  });
 });
 
 afterEach(async () => {
@@ -28,7 +37,10 @@ describe("Given a GET '/robots' endpoint ", () => {
     test("Then it should respond with status 200 and the robots 'R2-D2', 'Emilio' and 'Terminator'", async () => {
       const statusCode = 200;
 
-      const response = await request(app).get(path).expect(statusCode);
+      const response = await request(app)
+        .get(path)
+        .set("Authorization", "bearer ")
+        .expect(statusCode);
 
       const responseBody = response.body as { robots: RobotStructure[] };
 
@@ -47,7 +59,10 @@ describe("Given a GET '/robots' endpoint ", () => {
     test("Then it should throw an error with status code 500 and the message 'Internal server error'", async () => {
       const errorCode = 500;
       await mongoose.connection.close();
-      await request(app).get(path).expect(errorCode);
+      await request(app)
+        .get(path)
+        .set("Authorization", "bearer ")
+        .expect(errorCode);
     });
   });
 });

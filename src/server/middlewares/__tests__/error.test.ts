@@ -1,6 +1,6 @@
 import { type Request, type Response } from "express";
-import CustomError from "../../CustomError/CustomError";
-import { endpointNotFound, generalErrorHandler } from "./error";
+import CustomError from "../../../CustomError/CustomError";
+import { endpointNotFound, generalErrorHandler } from "../error";
 
 const next = jest.fn();
 const req: Partial<Request> = {};
@@ -10,7 +10,7 @@ const res: Partial<Response> = {
 };
 
 describe("Given a endpointNotFound error middleware", () => {
-  describe("When the passed next functions is calles", () => {
+  describe("When the passed next functions is called", () => {
     test("Then it should call the passed next function with a custom error with status code 404", () => {
       const customError = new CustomError(
         "Endpoint not found",
